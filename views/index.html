@@ -1,0 +1,64 @@
+<!-- BEGIN SAMPLE TABLE PORTLET-->
+
+<div class="portlet box red">
+
+    <div class="portlet-title">
+
+        <div class="caption"><i class="icon-cogs"></i>项目列表</div>
+
+        <div class="tools">
+
+            <a href="javascript:;" class="collapse"></a>
+
+            <a href="#portlet-config" data-toggle="modal" class="config"></a>
+
+            <a href="javascript:;" class="reload"></a>
+
+            <a href="javascript:;" class="remove"></a>
+
+        </div>
+
+    </div>
+
+    <div class="portlet-body">
+
+        <table class="table table-hover">
+
+            <thead>
+
+            <tr>
+                <th>项目ID</th>
+                <th>项目名称</th>
+                <th>项目类型</th>
+                <th class="hidden-180">创建时间</th>
+                <th>部署路径(etcdKey=部署路径+ip/)</th>
+                <th>Ip</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+            {{range .infoList}}
+            <tr>
+
+                <td>{{.Id}}</td>
+
+                <td>{{.AppName}}</td>
+
+                <td>{{.AppType}}</td>
+
+                <td class="hidden-180">{{.CreateTime}}</td>
+
+                <td><span class="label label-success">{{.DevelopPath}}</span></td>
+                <td>{{.Ip}}</td>
+            </tr>
+            {{end}}
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- END SAMPLE TABLE PORTLET-->
