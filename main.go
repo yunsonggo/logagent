@@ -4,7 +4,6 @@ import (
 	"beegoDemo/dial"
 	_ "beegoDemo/routers"
 	"beegoDemo/service"
-
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 )
@@ -67,8 +66,6 @@ func main() {
 		logs.Warn(err)
 		return
 	}
-	// 启动发送服务
-	go service.SendMsgServer()
 	// 注册kafka消费端
 	topic, err := beego.AppConfig.String("topic")
 	if err != nil {
@@ -91,11 +88,10 @@ func main() {
 		logs.Warn(err)
 		return
 	}
+
+	// 启动发送msg to kafuka服务
+	go service.SendMsgServer()
 	// 消费kafka到ES
-	err = service.WatchMsg()
-	if err != nil {
-		logs.Warn(err)
-		return
-	}
+	go service.WatchMsg()
 	beego.Run("192.168.1.102:8090")
 }
